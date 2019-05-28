@@ -6,7 +6,7 @@ metadata:
     # If you are NOT using this as an addon, you should comment out this line.
     kubernetes.io/cluster-service: 'true'
     kubernetes.io/name: grafana
- #   cloud.google.com/load-balancer-type: "Internal"
+    cloud.google.com/load-balancer-type: "Internal"
   name: grafana
   namespace: monitoring
 spec:

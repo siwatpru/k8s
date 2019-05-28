@@ -21,42 +21,18 @@ data:
       group_by: ['alertname', 'cluster', 'service']
       group_wait: 10s
       group_interval: 1m
-      repeat_interval: 5m  
-      receiver: default 
+      repeat_interval: 5m
+      receiver: default
       routes:
       - match:
           team: devops
-        receiver: devops
-        continue: true 
-      - match: 
+        receiver: default
+        continue: true
+      - match:
           team: dev
-        receiver: dev
+        receiver: default
         continue: true
 
     receivers:
     - name: 'default'
 
-    - name: 'devops'
-      victorops_configs:
-      - api_key: '<YOUR_API_KEY>'
-        routing_key: 'devops'
-        message_type: 'CRITICAL'
-        entity_display_name: '{{ .CommonLabels.alertname }}'
-        state_message: 'Alert: {{ .CommonLabels.alertname }}. Summary:{{ .CommonAnnotations.summary }}. RawData: {{ .CommonLabels }}'
-      slack_configs:
-      - channel: '#k8-alerts'
-        send_resolved: true
-
-
-    - name: 'dev'
-      victorops_configs:
-      - api_key: '<YOUR_API_KEY>'
-        routing_key: 'dev'
-        message_type: 'CRITICAL'
-        entity_display_name: '{{ .CommonLabels.alertname }}'
-        state_message: 'Alert: {{ .CommonLabels.alertname }}. Summary:{{ .CommonAnnotations.summary }}. RawData: {{ .CommonLabels }}'
-      slack_configs:
-      - channel: '#k8-alerts'
-        send_resolved: true
-
-  

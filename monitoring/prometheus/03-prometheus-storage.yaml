@@ -15,26 +15,11 @@ metadata:
   namespace: monitoring
 spec:
   capacity:
-    storage: 250Gi
+    storage: 100Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: fast
   gcePersistentDisk:
     fsType: ext4
-    pdName: prometheus-volume
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: prometheus-claim
-  namespace: monitoring
-  annotations:
-    volume.beta.kubernetes.io/storage-class: "fast"
-spec:
-  accessModes:
-    - ReadWriteOnce
-  volumeMode: Filesystem
-  resources:
-    requests:
-      storage: 250Gi
+    pdName: gke-test-cluster-8d1ed-pvc-96f9e809-8120-11e9-bb68-42010a94005f

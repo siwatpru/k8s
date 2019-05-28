@@ -10,21 +10,21 @@ spec:
   - host: grafana.yourdomain.com
     http:
       paths:
-      - path: /
+      - path: /grafana
         backend:
           serviceName: grafana
           servicePort: 3000
   - host: prometheus.yourdomain.com
     http:
       paths:
-      - path: /
+      - path: /prometheus
         backend:
           serviceName: prometheus-service
           servicePort: 8080
   - host: alertmanager.yourdomain.com
-    http: 
+    http:
       paths:
-      - path: /
+      - path: /alertmanager
         backend:
           serviceName: alertmanager
           servicePort: 9093
